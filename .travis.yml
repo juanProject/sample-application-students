@@ -5,9 +5,10 @@ services:
 
 script:
   - mvn clean verify
-  - docker build -t tp_database ./Database
+  - docker build -t $DOCKERHUB_USER/tp_database ./Database
 
-after_success:
-  - docker login  -p $DOCKERHUB_PWD -u  $DOCKERHUB_USER
-  - docker tag tp_database $DOCKERHUB_USER/database_base:1.1
-  - docker push tp_database
+if: branch = develop
+  after_success:
+    - docker login -p $DOCKERHUB_PWD -u $DOCKERHUB_USER
+    - docker tag $DOCKERHUB_USER/tp_database $DOCKERHUB_USER/database_base:1.1
+    - docker push tp_database
