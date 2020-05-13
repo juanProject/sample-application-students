@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+ tp_backend:
+   build: ./Backend
+   networks:
+     - tp_network
+   depends_on:
+     - tp_database
+
+ tp_database:
+   build: ./Database
+   networks:
+     - tp_network
+
+ tp_httpd:
+   build: ./Server
+   ports:
+     - "80:80"
+   networks:
+     - tp_network
+   depends_on:
+     - tp_backend
+
+networks:
+  tp_network:
