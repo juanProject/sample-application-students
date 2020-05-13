@@ -18,12 +18,12 @@ jobs:
         - docker push $DOCKERHUB_USER/database_base
     - stage: publish_backend
       if: branch = develop
-        script:
-          - docker build -t $DOCKERHUB_USER/backend_base ./Backend
-        after_success:
-          - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
-          - docker tag $DOCKERHUB_USER/backend_base $DOCKERHUB_USER/backend_base:1.1
-          - docker push $DOCKERHUB_USER/backend_base
+      script:
+        - docker build -t $DOCKERHUB_USER/backend_base ./Backend
+      after_success:
+        - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
+        - docker tag $DOCKERHUB_USER/backend_base $DOCKERHUB_USER/backend_base:1.1
+        - docker push $DOCKERHUB_USER/backend_base
     - stage: publish_server
           if: branch = develop
           script:
