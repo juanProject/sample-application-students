@@ -35,7 +35,7 @@ jobs:
     - stage: sonar_scanner
       addons:
         sonarcloud:
-          organization: "Crunchy" # the key of the org you chose at step #3
+          organization: "juanproject" # the key of the org you chose at step #3
           token: $SONAR_KEY
       script:
         # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
