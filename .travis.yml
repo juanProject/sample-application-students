@@ -7,8 +7,7 @@ script:
   - mvn clean verify
   - docker build -t $DOCKERHUB_USER/tp_database ./Database
 
-if: branch = develop
-  after_success:
-    - docker login -p $DOCKERHUB_PWD -u $DOCKERHUB_USER
-    - docker tag $DOCKERHUB_USER/tp_database $DOCKERHUB_USER/database_base:1.1
-    - docker push tp_database
+after_success:
+  - cat $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
+  - docker tag $DOCKERHUB_USER/tp_database $DOCKERHUB_USER/database_base:1.1
+  - docker push tp_database
