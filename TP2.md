@@ -30,9 +30,19 @@ A db changelog job is meant to maintain database versioning
 What Is testcontainers : a java library that run docker "lightweight, throwaway instances" to test common databases, 
 Selenium web browsers, etc. (according to google)
 
+
+### Working CI with travis file.
+
+```yaml
+# .travis.yml
+language: java
+
+script: mvn clean verify
+```
+
 ### Why do we need this branch ?
 
-???
+This branch is needed because we don't want to continuously Deliver on every branch that is created    
 
 ### Secured variables, why ?
 
@@ -45,4 +55,9 @@ We need Dockerfile to build our images
 ### For what purpose ?
 
 ???
+
+### Working quality gate.
+
+![working Quality Gate](./img/working_quality_gate.png)
+
 
