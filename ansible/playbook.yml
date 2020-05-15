@@ -4,6 +4,7 @@
   roles:
     - docker
     - common
+    - deployment
 
   tasks:
     - name: Test connection

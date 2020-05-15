@@ -29,6 +29,10 @@
     name: docker-ce
     state: present
 
+- name: Create TP network
+  docker_network:
+    name: tp_network
+
 - name: Make sure Docker is running
   service: name=docker state=started
   tags: docker
