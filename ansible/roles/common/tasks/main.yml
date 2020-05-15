@@ -1,0 +1,18 @@
+- name: close ports
+  iptable:
+    chain: INPUT
+    jump: DROP
+
+- name: open port 80
+  firewalld:
+    port: "80/tcp"
+    permanent: true
+    state: enabled
+    immediate: true
+
+- name: open port 80
+  firewalld:
+    port: "22/tcp"
+    permanent: true
+    state: enabled
+    immediate: true
