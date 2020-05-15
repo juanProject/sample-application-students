@@ -40,3 +40,13 @@ jobs:
       script:
         # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
         - mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=juanProject_sample-application-students
+    - stage: deploy
+      #if: branch = master
+      install:
+        - sudo apt update
+        - sudo apt install software-properties-common
+        - sudo apt-add-repository --yes --update ppa:ansible/ansible
+        - sudo apt install ansible
+      script:
+        - echo $SERVER_PRIVATE_KEY >> key_rsa
+        - ansible-playbook -i ansible/inventories/setup.yml ansible/playbook.yml --private-key key_rsa
