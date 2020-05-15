@@ -3,6 +3,7 @@
   become: yes
   roles:
     - docker
+    - common
 
   tasks:
     - name: Test connection
