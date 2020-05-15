@@ -3,4 +3,5 @@ all:
    ansible_user: centos
  children:
    prod:
-     hosts: urrego-juan-formation.takima.io
+     hosts:
+       urrego-juan-formation.takima.io:
