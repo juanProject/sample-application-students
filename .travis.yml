@@ -14,7 +14,7 @@ jobs:
         - docker build -t $DOCKERHUB_USER/database_base ./Database
       after_success:
         - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
-        - docker tag $DOCKERHUB_USER/database_base $DOCKERHUB_USER/database_base:1.1
+        - docker tag $DOCKERHUB_USER/database_base $DOCKERHUB_USER/database_base:1.2
         - docker push $DOCKERHUB_USER/database_base
     - stage: publish_backend
       if: branch = develop
@@ -22,7 +22,7 @@ jobs:
         - docker build -t $DOCKERHUB_USER/backend_base ./Backend
       after_success:
         - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
-        - docker tag $DOCKERHUB_USER/backend_base $DOCKERHUB_USER/backend_base:1.1
+        - docker tag $DOCKERHUB_USER/backend_base $DOCKERHUB_USER/backend_base:1.2
         - docker push $DOCKERHUB_USER/backend_base
     - stage: publish_front
       if: branch = develop
@@ -30,7 +30,7 @@ jobs:
         - docker build -t $DOCKERHUB_USER/front_base ./front
       after_success:
         - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
-        - docker tag $DOCKERHUB_USER/front_base $DOCKERHUB_USER/front_base:1.0
+        - docker tag $DOCKERHUB_USER/front_base $DOCKERHUB_USER/front_base:1.1
         - docker push $DOCKERHUB_USER/front_base
     - stage: publish_server
       if: branch = develop
@@ -38,7 +38,7 @@ jobs:
         - docker build -t $DOCKERHUB_USER/server_base ./Server
       after_success:
         - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
-        - docker tag $DOCKERHUB_USER/server_base $DOCKERHUB_USER/server_base:1.1
+        - docker tag $DOCKERHUB_USER/server_base $DOCKERHUB_USER/server_base:1.2
         - docker push $DOCKERHUB_USER/server_base
     - stage: sonar_scanner
       addons:

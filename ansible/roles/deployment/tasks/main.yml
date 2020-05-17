@@ -11,26 +11,26 @@
 - name: Run Database
   docker_container:
      name: tp_database
-     image: jurrego/database_base:1.1
+     image: jurrego/database_base:1.2
      networks:
        - name: tp_network
 
 - name: Run Backend
   docker_container:
      name: tp_backend
-     image: jurrego/backend_base:1.1
+     image: jurrego/backend_base:1.2
      networks:
        - name: tp_network
 - name: Run Front
   docker_container:
      name: tp_front
-     image: jurrego/front_base:1.0
+     image: jurrego/front_base:1.1
      networks:
        - name: tp_network
 - name: Run HTTPD
   docker_container:
      name: httpd
-     image: jurrego/server_base:1.1                                                                                                                
+     image: jurrego/server_base:1.2                                                                                                                
      ports:
        - "80:80"
        - "8080:8080"
