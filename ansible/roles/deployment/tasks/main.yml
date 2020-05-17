@@ -23,14 +23,16 @@
        - name: tp_network
 - name: Run Front
   docker_container:
+     name: tp_front
      image: jurrego/front_base:1.0
      networks:
-       - name: tp_netmork
+       - name: tp_network
 - name: Run HTTPD
   docker_container:
      name: httpd
      image: jurrego/server_base:1.1                                                                                                                
      ports:
        - "80:80"
+       - "8080:8080"
      networks:
        - name: tp_network

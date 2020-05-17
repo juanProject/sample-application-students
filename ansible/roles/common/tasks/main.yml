@@ -17,3 +17,11 @@
     permanent: yes
     state: enabled
     immediate: yes
+
+- name: open port 8080
+  firewalld:
+    port: 8080/tcp
+    permanent: yes
+    state: enabled
+    immediate: yes
+
