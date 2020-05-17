@@ -71,6 +71,7 @@ export default {
       await fetch(`http://${process.env.VUE_APP_API_URL}/students/`, {
         method: "POST",
         headers: {
+          "Access-Control-Allow-Origin": "*",
           Accept: "application/json",
           "Content-Type": "application/json"
         },

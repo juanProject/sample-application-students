@@ -24,6 +24,14 @@ jobs:
         - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
         - docker tag $DOCKERHUB_USER/backend_base $DOCKERHUB_USER/backend_base:1.1
         - docker push $DOCKERHUB_USER/backend_base
+    - stage: publish_front
+      if: branch = develop
+      script:
+        - docker build -t $DOCKERHUB_USER/front_base ./front
+      after_success:
+        - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
+        - docker tag $DOCKERHUB_USER/front_base $DOCKERHUB_USER/front_base:1.0
+        - docker push $DOCKERHUB_USER/front_base
     - stage: publish_server
       if: branch = develop
       script:

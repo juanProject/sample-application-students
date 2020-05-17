@@ -21,7 +21,11 @@
      image: jurrego/backend_base:1.1
      networks:
        - name: tp_network
-
+- name: Run Front
+  docker_container:
+     image: jurrego/front_base:1.0
+     networks:
+       - name: tp_netmork
 - name: Run HTTPD
   docker_container:
      name: httpd
