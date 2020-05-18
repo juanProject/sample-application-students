@@ -3,19 +3,32 @@ language: java
 services:
   - docker
 
-script:
-  - mvn clean verify
-  - docker build -t $DOCKERHUB_USER/tp_database ./Database
-
 jobs:
   include:
-    - stage: build
+    - stage: test
+      script:
+        - mvn clean verify
+    - stage: publish_database
       if: branch = develop
       script:
         - docker build -t $DOCKERHUB_USER/database_base ./Database
-    - stage: publish
-      if: branch = develop
       after_success:
         - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
         - docker tag $DOCKERHUB_USER/database_base $DOCKERHUB_USER/database_base:1.1
         - docker push $DOCKERHUB_USER/database_base
+    - stage: publish_backend
+      if: branch = develop
+        script:
+          - docker build -t $DOCKERHUB_USER/backend_base ./Backend
+        after_success:
+          - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
+          - docker tag $DOCKERHUB_USER/backend_base $DOCKERHUB_USER/backend_base:1.1
+          - docker push $DOCKERHUB_USER/backend_base
+    - stage: publish_server
+          if: branch = develop
+          script:
+            - docker build -t $DOCKERHUB_USER/server_base ./Server
+          after_success:
+            - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
+            - docker tag $DOCKERHUB_USER/server_base $DOCKERHUB_USER/server_base:1.1
+            - docker push $DOCKERHUB_USER/server_base
